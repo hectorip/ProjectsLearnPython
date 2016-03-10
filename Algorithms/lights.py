@@ -10,12 +10,10 @@
 #     return lights
 
 
-def rlightBulbs(l, n):
+def lightBulbs(l, n):
     while n:
-        for i, b in enumerate(l[:]):
-            l[i + 1] = b ^ l[i+1]
+        l = [x ^ l[i-1] for i, x in enumerate(l)]
         n -= 1
-        print(l)
     return l
 
-print(rlightBulbs([0, 1, 1, 0, 1], 2))
+print(lightBulbs([0, 1, 1, 0, 1], 2))
