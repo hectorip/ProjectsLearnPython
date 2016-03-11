@@ -1,34 +1,19 @@
-
-def simplifiedArray(a, R=[2,3]):
-    c = [a[0]]
-    s = []
-    p = prime(a[0])
+def simplifiedArray(a):
+    d = a[0]
+    s = [d]
+    p = u(d)
+    i= 0
     for x in a[1:]:
-        if prime(x) == p:
-            c += [x]
+        q = u(x)
+        if q ^ p:
+            s += [x]
+            i +=1
+            p = q
         else:
-            s += [sum(c)]
-            c = [x]
-            p = not p
-    s += [sum(c)]
-    print(s)
-    return a if s == a else simplifiedArray(s,R)
+            s[i] += x
+            
+    return s == a and a or simplifiedArray(s)
 
-def prime(n):
-    q = 1
-    if n < 2:
-        return 0
-    if n == 2:
-        return 1
-    if not(n % 2):
-        return 0
-    for x in range(3, (n//2)+ 2,2):
-        if not(n % x):
-            q = 0
-            break
+u = lambda n: n>1 and all([(n%j) for j in range(2, int(n**0.5)+1)])
 
-    return q
-
-
-
-print( simplifiedArray([1, 2, 3, 5, 6, 4, 2, 3]) )
+print(simplifiedArray([-3, 4, 5, 2, 0, -10]))
