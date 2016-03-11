@@ -1,6 +1,5 @@
 def MatrixMultiplication(a, b):
-    r = [0,1,2]
-    return [[sum([a[i][k] * b[k][j] for k in r])  for j in r] for i in r]
+    return [[sum([m[i] * x[i] for x in b]) for i in [0,1,2]] for m in a]
 
 a = [[1,2,3],
      [4,5,6],
